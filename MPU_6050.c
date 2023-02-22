@@ -18,13 +18,12 @@
  * 
 */
 
-#define ACCELERATION_RANGE 1    //2g, 4g, 8g or 16g (0, 1, 2 or 3)               pg 15 of registers       
-#define I2C_ADDRESS 0x68        //with AD0 to 0, if AD0 is 1 then I2C is 0x69    pg 15 of datasheet 
+#define ACCELERATION_RANGE 1    //2g, 4g, 8g or 16g (0, 1, 2 or 3)     
+#define I2C_ADDRESS 0x68        //with AD0 to 0, if AD0 is 1 then I2C is 0x69
 
 #define ACCELERATION_SENSITIVITY  8192      // 2g -> 16384 LSB/g    4g -> 8192 LSB/g    8g -> 4096 LSB/g    16g -> 2048 LSB/g
-                                        //   pg 26 of registers  
-// Addresses of the registers (We have 16 bits of data that are distributed in 2 registers for each axis)         pg 7 of registers
-#define REG_X_ADDR_HIGH 0x3B            // These values are in hexadecimal
+
+#define REG_X_ADDR_HIGH 0x3B
 #define REG_X_ADDR_LOW  0x3C
 #define REG_Y_ADDR_HIGH 0x3D
 #define REG_Y_ADDR_LOW  0x3E
@@ -141,14 +140,9 @@ int main(){
     printf("\033[2J");      // Erase the screen
     printf("\033[?25h");    // Make cursor visible
     printf("\033[H");       // Return to (0,0)
-    //x_angle = atan2((double)axis_value[2],(double)axis_value[0]);
-    //x_angle = atan2((double)axis_value[2],(double)axis_value[1]);
-    //printf("Angle x: %.2f       Angle Y: %.2f", x_angle, y_angle);
     printf("Last values: X: %.2f    Y: %.2f    Z:  %.2f\n", axis_value[0], axis_value[1], axis_value[2]);
     close (fd_accelerometer);
     printf("Closing program\n");
-
-    //printf("Angle x: %.2f       Angle Y: %.2f", x_angle, y_angle)
 }
 
 void SIGINT_Handler (int signal){
